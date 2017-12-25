@@ -8,7 +8,7 @@ function TodoItem(props){
     
   } 
   function editTodo(){
-    console.log();
+    props.deleteTodo(props.todo.id);
   
   } 
   return (

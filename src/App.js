@@ -11,6 +11,8 @@ class App extends Component {
     super();
     this.state = {
       todos: [],
+      tags:[],
+      newTodo:[],
       editStatus: false
     }
     this.handleDeleteTodo = this.handleDeleteTodo.bind(this);
@@ -30,6 +32,10 @@ class App extends Component {
     );
   }
 
+  addTodo(){
+    console.log(this.refs.name.value);
+  }
+
   handleDeleteTodo(id){
     axiosService.delete('todos/' + id).then(() =>{
       this.getTodos();
@@ -45,7 +51,7 @@ class App extends Component {
       <div className="App">
         <Search />
         <Todos todos = {this.state.todos} deleteTodo={this.handleDeleteTodo}/>
-        <AddTodo />
+        <AddTodo/>
         <EditTodo />
       </div>
     );
