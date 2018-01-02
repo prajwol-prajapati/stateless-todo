@@ -4,11 +4,14 @@ import Search from './Components/Search';
 import AddTodo from './Components/AddTodo';
 import EditTodo from './Components/EditTodo';
 import axiosService from'./Services/axiosService';
+import {connect} from 'react-redux';
+
+import * as actions from './Actions/todoAction';
 import './App.css';
 
 class App extends Component {
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.state = {
       todos: [],
       tags:[],
@@ -40,15 +43,14 @@ class App extends Component {
     }
   }
 
-  getTodos(){
-    
+  getTodos(){    
     axiosService.get('todos')
     .then(
-      (value) => {
+      (result) => {
         this.setState({
-          todos: value.data.data
-
+          todos: result.data.data
         });
+        this.props.dispatch(actions.getTodos(result.data.data));
       }
     );
   }
@@ -205,6 +207,7 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.props);
     return (
       <div className="App">
         <Search handleChange={this.handleSearch}/>
@@ -215,4 +218,7 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = (state) => {return {...state};};
+const MainApp = connect(mapStateToProps)(App)
+
+export default MainApp;

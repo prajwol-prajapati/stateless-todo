@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-let badToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbmNyeXB0ZWREYXRhIjp7ImVtYWlsIjoic21yaXRpZ2hpbWlyZUBnbWFpbC5jb20iLCJwYXNzd29yZCI6ImdoaW1pcmUiLCJpZCI6MiwibGFzdE5hbWUiOiJnaGltaXJlIiwiZmlyc3ROYW1lIjoic21yaXRpIn0sImlhdCI6MTUxMzY2Njk4NCwiZXhwIjoxNTEzNzY2OTg0fQ.yGBeAI4e_qG2TxAk0_mSqFyvVCB_TJYDLD5ZPUQUOqs';
-let refreshToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbmNyeXB0ZWREYXRhIjp7ImVtYWlsIjoieXVzaGdoaW1pcmVAZ21haWwuY29tIiwicGFzc3dvcmQiOiJheXVzaCIsImlkIjoxLCJsYXN0TmFtZSI6ImdoaW1pcmUiLCJmaXJzdE5hbWUiOiJheXVzaCJ9LCJpYXQiOjE1MTM3NzI3NTMsImV4cCI6MTUxNDU3Mjc1M30.WfPUFYyyMhUdzeOY9XXN2jFHKSpE3jqSeesjQbqNXHM';
+let badToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbmNyeXB0ZWREYXRhIjp7ImVtYWlsIjoieXVzaGdoaW1pcmVAZ21haWwuY29tIiwicGFzc3dvcmQiOiJheXVzaCIsImlkIjoxLCJsYXN0TmFtZSI6ImdoaW1pcmUiLCJmaXJzdE5hbWUiOiJheXVzaCJ9LCJpYXQiOjE1MTQ3MjEyNzQsImV4cCI6MTUxNDcyMTM3NH0.TmEe-lwHVLl23b3DiUNCl-nMuod8Z67wROPYzf8eM8U';
+let refreshToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbmNyeXB0ZWREYXRhIjp7ImVtYWlsIjoieXVzaGdoaW1pcmVAZ21haWwuY29tIiwicGFzc3dvcmQiOiJheXVzaCIsImlkIjoxLCJsYXN0TmFtZSI6ImdoaW1pcmUiLCJmaXJzdE5hbWUiOiJheXVzaCJ9LCJpYXQiOjE1MTQ3MjEyNzQsImV4cCI6MTUxNTUyMTI3NH0.ehJewYnmzBncsPKc-Ts6yFNj0qgmnkUUg6J85NV_hOk';
 
 let axiosService = axios.create({
     baseURL: 'http://localhost:8848/api/',
@@ -10,6 +10,7 @@ let axiosService = axios.create({
 });
 
 function getRefreshToken() {
+    console.log('getting refresh token');
     return axiosService({
         url: '/refresh',
         method: 'get',
@@ -26,6 +27,7 @@ axiosService.interceptors.response.use(undefined, err => {
 
         return getRefreshToken()
         .then(data => {
+            console.log('getting access token');
             axiosService.defaults.headers['Authorization'] = data.data.accessToken;
             tempConfig.headers.Authorization = data.data.accessToken;
 

@@ -4,7 +4,7 @@ import axiosService from '../Services/axiosService';
 
 function TodoItem(props){
   function deleteTodo() {
-    props.deleteTodo(props.todo.id);
+    props.deleteTodo(props.todo);
     
   }
   function editTodo() {

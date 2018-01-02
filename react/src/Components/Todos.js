@@ -4,14 +4,11 @@ import TodoItem from './TodoItem';
 
 function Todos(props){
     let todoItems;
-    function deleteTodo(id){
-      props.deleteTodo(id);
-      
-    }
+    
     if(props.todos){
         todoItems = props.todos.map((todo) => {
           return (
-            <TodoItem key={todo.id} todo={todo} deleteTodo={deleteTodo} editTodo={props.editTodo}/>
+            <TodoItem key={todo.id} todo={todo} deleteTodo={props.deleteTodo} editTodo={props.editTodo}/>
           );
         });
         
