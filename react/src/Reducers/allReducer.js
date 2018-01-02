@@ -8,12 +8,14 @@ const INITIALSTATE = {
         completed: 'false'
     },
     editStatus: false,
-    currentEditId: 0
+    currentEditId: 0,
+    searchKey: ''
 }
 
 const allReducer = (state = INITIALSTATE, action) => {
     let changeName = action.changeName;
     let obj = {...state.newTodo};
+    let currentTodos = state.todos
     let updatedTodos = {...state.todos, obj};
     // let updatedTodos = currentTodos.push(obj);
     // let updatedTodos = {...currentTodos, todos: currentTodos.push(obj)}
@@ -45,9 +47,6 @@ const allReducer = (state = INITIALSTATE, action) => {
             return {...state, todos: updatedTodos};
 
         case 'HANDLE_EDIT_STATUS':
-            console.log("------------------------------------------------------------------------");
-            console.log(state.editStatus);
-            console.log(action.payload);
             return {
                 ...state,
                 editStatus: true,
@@ -59,6 +58,22 @@ const allReducer = (state = INITIALSTATE, action) => {
                     completed : action.payload.done
                 }
             }
+
+        case 'EDIT_TODO':
+            console.log(updatedTodos);
+            console.log(state.todos[2]);
+        
+            return {...state, todos: currentTodos.map((todo) => {
+                
+                if(todo.id === state.currentEditId){
+                    console.log(todo);
+                    todo = obj;
+                }
+                    
+            } )};
+
+        case 'HANDLE_SEARCH':
+            return {...state, searchKey: action.payload}
 
         default: 
             return state;

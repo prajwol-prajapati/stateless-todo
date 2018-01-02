@@ -32,3 +32,16 @@ export const handleEditStatus = (payload) => {
         payload
     }
 }
+
+export const editTodo = () => {
+    return {
+        type: 'EDIT_TODO'
+    }
+}
+
+export const handleSearch = (searchKey) => {
+    return {
+        type: 'HANDLE_SEARCH',
+        payload: searchKey
+    }
+}

@@ -165,7 +165,9 @@ class MainWrapper extends Component {
     let todos = this.props.todos;
     console.log(id);
     console.log(todo);
-
+    // this.props.dispatch(action.editTodo());
+    console.log(this.props.todos);
+    
     axiosService.put('todos/' + id, {
       name: todo.name,
       tags: todo.tags,
@@ -176,9 +178,8 @@ class MainWrapper extends Component {
 
   handleSearch(e){
     let searchKey = e.target.value;
-    this.setState({
-      searchKey: e.target.value
-    });
+    
+    this.props.dispatch(action.handleSearch(searchKey));
     axiosService.get('todos/search', {
       params: {
         key: searchKey
@@ -188,6 +189,7 @@ class MainWrapper extends Component {
       this.setState({
         todos: value.data.data
       })
+      this.props.dispatch(action.getTodos(value.data.data));
     });
 
   }
@@ -212,7 +214,7 @@ class MainWrapper extends Component {
         handleChange={this.handleChange} 
         completed={this.defaultValue.completed}
         tags={this.defaultValue.tags}
-        defaultValue={this.state.newTodo}
+        defaultValue={this.props.newTodo}
       />
     }
   }
