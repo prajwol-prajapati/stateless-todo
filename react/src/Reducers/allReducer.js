@@ -16,7 +16,7 @@ const allReducer = (state = INITIALSTATE, action) => {
     let changeName = action.changeName;
     let obj = {...state.newTodo};
     let currentTodos = state.todos
-    let updatedTodos = {...state.todos, obj};
+    let updatedTodos = [...state.todos, obj];
     // let updatedTodos = currentTodos.push(obj);
     // let updatedTodos = {...currentTodos, todos: currentTodos.push(obj)}
     

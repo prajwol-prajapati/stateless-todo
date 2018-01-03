@@ -8,20 +8,30 @@ import { connect } from 'react-redux';
 import * as action from '../Actions/todoAction';
 
 class MainWrapper extends Component {
-  constructor(){
-    super();
-    this.state = {
-      todos: [],
-      tags:[],
-      newTodo:{
-        name: '',
-        tags: ['home'],
-        completed: 'false'
-      },
-      editStatus: false,
-      currentEditId: 0,
-      search: ''
-    }
+  // constructor(){
+  //   super();
+  //   this.state = {
+  //     todos: [],
+  //     tags:[],
+  //     newTodo:{
+  //       name: '',
+  //       tags: ['home'],
+  //       completed: 'false'
+  //     },
+  //     editStatus: false,
+  //     currentEditId: 0,
+  //     search: ''
+  //   }
+  //   this.handleDeleteTodo = this.handleDeleteTodo.bind(this);
+  //   this.getTodos = this.getTodos.bind(this);
+  //   this.handleAddTodo = this.handleAddTodo.bind(this);
+  //   this.handleChange = this.handleChange.bind(this);
+  //   this.handleEditStatus = this.handleEditStatus.bind(this);
+  //   this.handleEditTodo = this.handleEditTodo.bind(this);
+  //   this.handleSearch = this.handleSearch.bind(this);
+  // }
+  constructor(props){
+    super(props);
     this.handleDeleteTodo = this.handleDeleteTodo.bind(this);
     this.getTodos = this.getTodos.bind(this);
     this.handleAddTodo = this.handleAddTodo.bind(this);
@@ -42,7 +52,6 @@ class MainWrapper extends Component {
   }
 
   getTodos(){
-    
     axiosService.get('todos')
     .then(
       (value) => {
@@ -60,11 +69,13 @@ class MainWrapper extends Component {
   // }
 
   handleDeleteTodo(todo){
+    console.log('--------------------------');
+    console.log(this.props);
+    this.props.dispatch(action.deleteTodo(todo));    
     axiosService.delete('todos/' + todo.id).then(() =>{
         console.log(todo);
         console.log(todo.index);        
-      this.props.dispatch(action.deleteTodo(todo));
-      let tempList = this.state.todos.filter( ntodo => todo.id !== ntodo.id);
+      let tempList = this.props.todos.filter( ntodo => todo.id !== ntodo.id);
       this.setState({
         todos: tempList
       });
@@ -74,10 +85,8 @@ class MainWrapper extends Component {
   handleChange(event){
     let eventName = event.target.name;
     let value = event.target.value;
-    let prevTags = this.state.newTodo.tags;
-    let prevCompleted = this.state.newTodo.completed;
-    let prevName = this.state.newTodo.name;
-    const obj = {...this.state.newTodo};
+
+    const obj = {...this.props.newTodo};
     this.props.dispatch(action.handleChange(eventName, value));
 
     this.setState({
@@ -199,7 +208,7 @@ class MainWrapper extends Component {
   }
 
   editAddSelector(){
-    let editStatus = this.state.editStatus;
+    let editStatus = this.props.editStatus;
     if(!editStatus){
       return <AddTodo 
           submitOption={this.handleAddTodo} 
@@ -220,11 +229,11 @@ class MainWrapper extends Component {
   }
 
   render() {
-    console.log(this.props);
+    console.log(this.props.todos);
     return (
       <div className="MainWrapper">
         <Search handleChange={this.handleSearch}/>
-        <Todos todos = {this.state.todos} deleteTodo={this.handleDeleteTodo} editTodo={this.handleEditStatus}/>
+        <Todos todos = {this.props.todos} deleteTodo={this.handleDeleteTodo} editTodo={this.handleEditStatus}/>
         {this.editAddSelector()}
       </div>
     );

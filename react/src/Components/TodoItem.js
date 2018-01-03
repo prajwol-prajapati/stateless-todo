@@ -15,7 +15,7 @@ function TodoItem(props){
     <li className="todoItem">
       <strong> {props.todo.id} </strong> : {props.todo.name} 
       <span className="tagName"></span>
-      <button className="deleteButton" onClick={deleteTodo}>delete</button>
+      <button className="deleteButton" onClick={() => props.deleteTodo(props.todo)}>delete</button>
       <button className="deleteButton" onClick={editTodo}>edit</button>
     </li>
   )

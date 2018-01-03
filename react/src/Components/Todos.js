@@ -4,7 +4,7 @@ import TodoItem from './TodoItem';
 
 function Todos(props){
     let todoItems;
-    
+    console.log(props.todos);
     if(props.todos){
         todoItems = props.todos.map((todo) => {
           return (
