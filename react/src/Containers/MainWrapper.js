@@ -8,28 +8,7 @@ import { connect } from 'react-redux';
 import * as action from '../Actions/todoAction';
 
 class MainWrapper extends Component {
-  // constructor(){
-  //   super();
-  //   this.state = {
-  //     todos: [],
-  //     tags:[],
-  //     newTodo:{
-  //       name: '',
-  //       tags: ['home'],
-  //       completed: 'false'
-  //     },
-  //     editStatus: false,
-  //     currentEditId: 0,
-  //     search: ''
-  //   }
-  //   this.handleDeleteTodo = this.handleDeleteTodo.bind(this);
-  //   this.getTodos = this.getTodos.bind(this);
-  //   this.handleAddTodo = this.handleAddTodo.bind(this);
-  //   this.handleChange = this.handleChange.bind(this);
-  //   this.handleEditStatus = this.handleEditStatus.bind(this);
-  //   this.handleEditTodo = this.handleEditTodo.bind(this);
-  //   this.handleSearch = this.handleSearch.bind(this);
-  // }
+
   constructor(props){
     super(props);
     this.handleDeleteTodo = this.handleDeleteTodo.bind(this);
@@ -64,10 +43,6 @@ class MainWrapper extends Component {
     );
   }
 
-  // addTodo(){
-  //   console.log(this.refs.name.value);
-  // }
-
   handleDeleteTodo(todo){
     console.log('--------------------------');
     console.log(this.props);
@@ -97,55 +72,22 @@ class MainWrapper extends Component {
     }
     );
     console.log(this.state.newTodo);
-    
-    // console.log(this.state.newTodo);
-    // if(eventName === 'name'){
-    //   console.log(value);
-      
-    //   this.setState({newTodo: {
-    //     ...obj,
-    //     name : value
-    //   }});
-    // }else if(eventName === 'tags'){
-    //   console.log(value);
-      
-    //   this.setState({newTodo: {
-    //     ...obj,
-    //     tags : value
-    //   }});
-   
-    // }else if(eventName === 'completed'){
-    //   console.log(value);
-      
-    //   this.setState({newTodo: {
-    //     ...obj,
-    //     completed : value
-    //   }});
-
-    // }
-    // this.setState({})
-
   }
 
   handleAddTodo(){
     let todo = this.props.newTodo;
     let todos =  this.props.todos;
     console.log(todo);
-    console.log(todos);
-    
-    todos.push(todo);
+    console.log(todos);    
+    // todos.push(todo);
 
     this.props.dispatch(action.addTodo());
-    // this.setState({todos: todos});
-    // debugger;
-
+    
     axiosService.post('todos', {
       name: todo.name,
       tags: todo.tags,
       done: todo.completed
     });
-
-
   }
 
   handleEditStatus(todo){

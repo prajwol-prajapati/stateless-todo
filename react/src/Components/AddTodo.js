@@ -1,4 +1,5 @@
 import React from 'react';
+import DatePicker from 'react-datepicker';
 
 function AddTodo(props){
 	let handleChange = () => {
@@ -39,6 +40,10 @@ function AddTodo(props){
 						{completedOptions}
 					</select>
 				</div> <br />
+				<div>
+					<label> Date and Time </label>
+					<input type="datetime-local" name="datetime" />
+				</div>
 				<button type="submit" onClick={props.submitOption}>{buttonName}</button>
 
 			</form>
