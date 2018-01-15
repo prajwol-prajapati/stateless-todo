@@ -20,6 +20,13 @@ export const handleChange = (changeName, payload) => {
     }
 }
 
+export const handleDate = (date) => {
+    return {
+        type: 'HANDLE_DATE',
+        payload: date
+    }
+}
+
 export const addTodo = () => {
     return {
         type: 'ADD_TODO'
@@ -45,3 +52,12 @@ export const handleSearch = (searchKey) => {
         payload: searchKey
     }
 }
+
+export function moveTodo(dragIndex, hoverIndex) {
+    return {
+      type: 'MOVE_TODO',
+      dragIndex,
+      hoverIndex
+    };
+  }
+

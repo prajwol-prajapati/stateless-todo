@@ -1,6 +1,8 @@
 import React from 'react';
 import DatePicker from 'react-datepicker';
 
+import 'react-datepicker/dist/react-datepicker.css';
+
 function AddTodo(props){
 	let handleChange = () => {
 
@@ -41,8 +43,14 @@ function AddTodo(props){
 					</select>
 				</div> <br />
 				<div>
-					<label> Date and Time </label>
-					<input type="datetime-local" name="datetime" />
+					{/* <label> Date and Time </label>
+					<input type="datetime-local" name="datetime" /> */}
+					<DatePicker
+						name="date"
+						selected={props.date}
+						onChange={props.handleDate}
+						showTimeSelect
+					/>
 				</div>
 				<button type="submit" onClick={props.submitOption}>{buttonName}</button>
 

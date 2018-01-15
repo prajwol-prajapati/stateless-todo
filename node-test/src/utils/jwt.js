@@ -10,7 +10,7 @@ export function generateTokens(data) {
 
 export function generateAccessToken(data) {
   return jwt.sign({ encryptedData: data }, 'hellofromtheotherside', {
-    expiresIn: 10
+    expiresIn: 100000
   });
 }
 

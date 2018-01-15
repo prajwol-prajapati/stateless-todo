@@ -17,5 +17,5 @@ exports.up = function(knex) {
 };
 
 exports.down = function(knex) {
-  return knex.schema.dropTable('tags').dropTable('tags_todo');
+  return knex.schema.dropTable('tags_todo').dropTable('tags');
 };

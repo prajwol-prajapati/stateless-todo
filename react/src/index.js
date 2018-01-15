@@ -8,6 +8,7 @@ import {Provider} from 'react-redux';
 import {logger} from 'redux-logger';
 import thunk from 'redux-thunk';
 import AuthExample from './App';
+import MainWrapper from './Containers/MainWrapper'
 // import registerServiceWorker from './registerServiceWorker';
 
 
@@ -16,7 +17,7 @@ const store = createStore(allReducers, applyMiddleware(thunk, logger));
 
 ReactDOM.render(
     <Provider store={store}>
-        <AuthExample />
+        <MainWrapper />
     </Provider>
     , document.getElementById('root')
 );

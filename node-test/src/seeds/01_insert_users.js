@@ -13,16 +13,16 @@ export function seed(knex, Promise) {
       return Promise.all([
         // Inserts seed entries
         knex('users').insert({
-          first_name: 'ayush',
-          last_name: 'ghimire',
-          email: 'yushghimire@gmail.com',
-          password: 'ayush'
+          first_name: 'sachit',
+          last_name: 'shrestha',
+          email: 'sachit@gmail.com',
+          password: 'password'
         }),
         knex('users').insert({
-          first_name: 'smriti',
-          last_name: 'ghimire',
-          email: 'smritighimire@gmail.com',
-          password: 'ghimire'
+          first_name: 'prajwol',
+          last_name: 'prajwol',
+          email: 'prajwol@gmail.com',
+          password: 'password'
         })
       ]);
     });
